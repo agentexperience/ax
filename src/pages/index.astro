@@ -1,132 +1,125 @@
 ---
-import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
 import HomepageCard from "../components/HomepageCard.astro";
+import Logo from "../components/Logo.astro";
+import { Icon } from "astro-icon/components";
 ---
 
-<Layout title="Agent Experience">
+<Layout title="Agent Experience" footerCN="max-w-6xl">
   <main>
     <div
-      class="relative bg-gradient-to-tl from-primary via-secondary to-violet-900 pb-32 pt-16 overflow-hidden border-b-[6px] border-gradient-to-r"
+      class="relative pt-8 pb-16 lg:pt-20 xl:pt-32 lg:pb-24 border-b border-accent/10 z-0 overflow-hidden bg-gradient-to-t from-transparent to-white"
     >
-      <div class="max-w-4xl mx-auto px-4 text-left relative z-10 text-white/90">
-        <h1 class="text-5xl md:text-6xl mb-16 font-bold tracking-tight leading-[1.1]">
+      <div class="max-w-6xl px-4 sm:px-8 md:px-12 mx-auto relative z-10">
+        <h1
+          class="text-4xl md:text-5xl mb-12 font-bold text-text-dark leading-none tracking-tight"
+        >
+          <span
+            class="size-14 bg-text-dark flex items-center justify-center rounded scale-75 -ml-2 mb-4 text-white"
+            ><Logo className="inline-block -top-8 size-10" /></span
+          >
           Agent Experience
         </h1>
-        <p class="text-xl max-w-2xl mb-8">
-          Humans leverage AI agents to work on their behalf. As billions of
-          agents come online, their "experiences" will drive relevancy,
-          preference, and adoption for all sites and services that humans need
-          to get work done, to shop, etc.
+        <p class="text-lg max-w-2xl mt-6 leading-relaxed">
+          <em class="not-italic text-text-dark font-medium"
+            >Humans leverage AI agents to work on their behalf.</em
+          ><br />
+          As billions of agents come online, their "experiences" will drive relevancy,
+          preference, and adoption for all sites and services that humans need to
+          get work done, to shop, etc.
         </p>
-        <p class="text-xl max-w-xl mb-8">
-          This is <span class="italic">the</span> canonical site for learning, researching,
-          and building the future of AX.
+        <p class="text-lg max-w-xl mt-6 mb-10 leading-relaxed">
+          This is the canonical site for learning, researching, and building the
+          future of AX. <em class="not-italic font-medium"
+            >Looking to help drive the future of AX?</em
+          >
         </p>
-        <p class="text-xl max-w-2xl mt-4">Looking to help drive the future of AX?</p>
         <a
           href="https://github.com/orgs/agentexperience/discussions"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center px-6 mt-2 py-3 text-lg font-medium text-white bg-primary hover:bg-primary-light transition-colors duration-200 rounded-lg shadow-lg hover:shadow-xl gap-2"
+          class="text-lg inline-flex items-center justify-center border border-accent/20 align-middle select-none font-semibold text-center duration-100 ease-in focus:shadow-none py-3 px-5 shadow-sm hover:shadow-md hover:shadow-accent/10 relative bg-accent/5 text-text-dark rounded-md hover:bg-white gap-2"
         >
           Get involved
-          <Icon name="lucide:arrow-right" size="1.25em" />
+          <Icon name="lucide:arrow-right" />
         </a>
+        <Logo
+          stroke
+          fill={false}
+          className="hidden lg:block absolute -bottom-[340px] -right-24 xl:-right-48 w-[640px] h-auto text-accent/10 z-0"
+        />
       </div>
-      <svg
-        class="absolute bottom-0 right-4 w-[300px] sm:w-[400px] md:w-[644px] h-auto opacity-10 z-0"
-        viewBox="0 0 429 169"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M146.526 165.742L144.124 168.144H122.505L120.103 165.742L108.093 134.515L103.289 132.113H43.2371L38.433 134.515L26.4227 165.742L24.0206 168.144H2.40206L0 165.742V141.722L55.2474 2.40206L57.6495 0H88.8763L91.2783 2.40206L146.526 141.722V165.742ZM96.0824 100.887L74.4639 43.2371H72.0618L50.4433 100.887L52.8453 103.289H93.6804L96.0824 100.887Z"
-          fill="white"></path>
-        <path
-          d="M368.697 136.294C365.912 112.688 347.303 93.9274 323.769 90.9103V77.2342C347.303 74.2171 365.911 55.4565 368.697 31.8507L382.765 31.8507C385.571 55.6296 404.433 74.492 428.212 77.298V90.8464C404.433 93.6524 385.571 112.515 382.765 136.294H368.697Z"
-          fill="white"></path>
-        <path
-          d="M307.688 168.144L310.09 165.742V141.722L262.049 81.6701V79.268L307.688 26.4227V2.40207L305.286 1.52588e-05H288.471L283.667 2.40207L240.43 55.2474H238.028L194.791 2.40207L189.987 1.52588e-05H173.172L170.77 2.40207V26.4227L216.409 79.268V81.6701L168.368 141.722V165.742L170.77 168.144H187.585L192.389 165.742L238.028 105.691H240.43L286.069 165.742L290.873 168.144H307.688Z"
-          fill="white"></path>
-      </svg>
     </div>
-    <div class="max-w-4xl mx-auto px-4 mt-16">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <HomepageCard
-          href="/concepts/getting-started"
-          title="Concepts"
-          icon="lucide:sparkles"
-          iconClassName="text-blue-500"
-          className="!border-blue-500"
-        >
-          Learn the key concepts and what makes AX unique
-        </HomepageCard>
-        <HomepageCard
-          href="/articles"
-          title="Articles"
-          icon="lucide:scroll-text"
-          iconClassName="text-secondary"
-          className="border-secondary"
-        >
-          Read the latest industry articles about AX
-        </HomepageCard>
-        <HomepageCard
-          href="/research"
-          title="Research"
-          icon="lucide:microscope"
-          iconClassName="text-primary"
-          className="border-primary"
-        >
-          Dive into findings, ideas, and explorations
-        </HomepageCard>
-      </div>
-      <div class="p-6 sm:p-16 grid gap-12 bg-primary/10 mt-8 rounded-xl">
-        <section class="max-w-3xl mx-auto px-0 sm:px-4">
-          <h2 class="text-2xl font-semibold text-primary mb-4">
-            What is Agent Experience?
-          </h2>
-          <p class="text-text-dark leading-relaxed text-lg">
-            Agent Experience (AX) refers to the holistic experience AI agents
-            have when interacting with a product, platform, or system. It
-            encompasses how easily agents can access, understand, and operate
-            within digital environments to achieve user-defined goals. Similar
-            to UX (User Experience) and DX (Developer Experience), AX is
-            becoming a key differentiator in software design as AI agents
-            increasingly act autonomously to assist users with digital tasks.
-          </p>
-        </section>
-        <section class="max-w-3xl mx-auto px-0 sm:px-4">
-          <h2 class="text-2xl font-semibold text-primary mb-4">
-            Who is behind the AX movement?
-          </h2>
-          <p class="text-text-dark leading-relaxed text-lg">
-            AX is a substantial, industry level opportunity and requires an
-            open, collaborative approach to achieve. Netlify has helped <a
-              href="https://biilmann.blog/articles/introducing-ax/"
-              class="text-secondary underline hover:text-secondary-light"
-              target="_blank">define AX</a
-            > and bring together industry collaborators to pave a path forward. While
-            that's a good start, AX will be continue to be pioneered by the open
-            contributors, researchers, and volunteers in the community. If that sounds
-            interesting, get involved!
-          </p>
-        </section>
+    <div
+      class="relative before:absolute before:inset-full before:top-8 before:bottom-0 before:backdrop-blur-md z-10"
+    >
+      <div class="max-w-6xl px-4 sm:px-8 md:px-12 mx-auto z-10 relative -mt-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <HomepageCard
+            href="/concepts/getting-started"
+            title="Concepts"
+            icon="lucide:sparkles"
+          >
+            Learn the key concepts and what makes AX unique
+          </HomepageCard>
+          <HomepageCard
+            href="/articles"
+            title="Articles"
+            icon="lucide:scroll-text"
+          >
+            Read the latest industry articles about AX
+          </HomepageCard>
+          <HomepageCard
+            href="/research"
+            title="Research"
+            icon="lucide:microscope"
+          >
+            Dive into findings, ideas, and explorations
+          </HomepageCard>
+        </div>
+        <div class="relative grid gap-16 mt-16">
+          <section class="max-w-3xl">
+            <h2 class="text-2xl font-semibold text-text-dark">
+              What is Agent Experience?
+            </h2>
+            <p class="md:text-lg mt-4 leading-relaxed text-balance">
+              <em class="font-medium not-italic"
+                >Agent Experience (AX) refers to the holistic experience AI
+                agents have when interacting with a product, platform, or
+                system.</em
+              >
+            </p>
+            <p class="md:text-lg mt-4 leading-relaxed">
+              It encompasses how easily agents can access, understand, and
+              operate within digital environments to achieve user-defined goals.
+              Similar to UX (User Experience) and DX (Developer Experience), AX
+              is becoming a key differentiator in software design as AI agents
+              increasingly act autonomously to assist users with digital tasks.
+            </p>
+          </section>
+          <section class="max-w-2xl">
+            <h2 class="text-2xl font-semibold text-text-dark">
+              Who is behind the AX movement?
+            </h2>
+            <p class="md:text-lg mt-4 leading-relaxed text-balance">
+              <em class="font-medium not-italic"
+                >AX is a substantial, industry level opportunity and requires an
+                open, collaborative approach to achieve.</em
+              >
+            </p>
+            <p class="md:text-lg mt-4 leading-relaxed">
+              Netlify has helped <a
+                href="https://biilmann.blog/articles/introducing-ax/"
+                class="text-accent-dark font-medium underline underline-offset-2 hover:text-accent/80"
+                target="_blank">define AX</a
+              > and bring together industry collaborators to pave a path forward.
+              While that's a good start, AX will be continue to be pioneered by the
+              open contributors, researchers, and volunteers in the community. If
+              that sounds interesting, get involved!
+            </p>
+          </section>
+        </div>
       </div>
     </div>
   </main>
-
-  <style>
-    .border-gradient-to-r {
-      border-image: linear-gradient(
-          to right,
-          #ff7fee,
-          #bd84e9,
-          rgb(76, 29, 149)
-        )
-        1;
-    }
-  </style>
 </Layout>

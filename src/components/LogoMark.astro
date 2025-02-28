@@ -1,0 +1,27 @@
+---
+interface LogoProps {
+  size?: number;
+  className?: string;
+  stroke?: boolean;
+  fill?: boolean;
+}
+
+const { size = 16, className = '', stroke = false, fill = true }: LogoProps = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="-1 -1 18 18"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+>
+  <path
+    d="M6.88268 16C6.45603 12.3837 3.60527 9.50968 1.83157e-07 9.04748L0 6.9524C3.60523 6.4902 6.45597 3.61622 6.88267 1.88413e-07L9.03786 0C9.46769 3.64275 12.3573 6.53233 16 6.96219V9.03769C12.3572 9.46754 9.46761 12.3572 9.03783 16H6.88268Z"
+    fill={fill ? "currentColor" : "none"}
+    stroke={stroke ? "currentColor" : "none"}
+    stroke-width={stroke ? "1" : "0"}
+    vector-effect={stroke ? "non-scaling-stroke" : "none"}
+  />
+</svg>

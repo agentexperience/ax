@@ -1,91 +1,93 @@
 ---
 import Header from '../components/Header.astro';
 import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/inter';
 
 interface Props {
-	title: string;
-	description?: string;
-	social_card_url?: string;
+    title: string;
+    description?: string;
+    social_card_url?: string;
+    footerCN?: string;
 }
 
-const { title, description, social_card_url } = Astro.props;
+const { title, description, social_card_url, footerCN = "max-w-7xl" } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description || "Agent Experience (AX)"} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={description || "Agent Experience (AX)"} />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
 
-		<meta name="og:title" content={title} />
-		<meta name="og:description" content={description || "Agent Experience (AX)"} />
-		<meta property="og:type" content="website">
-		<meta property="twitter:domain" content="agentexperience.ax">
-		<meta name="twitter:title" content={title}>
-		<meta name="twitter:description" content={description || "Agent Experience (AX)"}>
-		<meta name="twitter:image" content="https://agentexperience.ax/articles/ax-standard-social.png">
+        <meta name="og:title" content={title} />
+        <meta name="og:description" content={description || "Agent Experience (AX)"} />
+        <meta property="og:type" content="website">
+        <meta property="twitter:domain" content="agentexperience.ax">
+        <meta name="twitter:title" content={title}>
+        <meta name="twitter:description" content={description || "Agent Experience (AX)"}>
+        <meta name="twitter:image" content="https://agentexperience.ax/articles/ax-standard-social.png">
 
-		{social_card_url && (
-			<>
-				<!-- Open Graph / Facebook -->
-				<meta property="og:image" content={`https://agentexperience.ax${social_card_url}`} />
+        {social_card_url && (
+            <>
+                <!-- Open Graph / Facebook -->
+                <meta property="og:image" content={`https://agentexperience.ax${social_card_url}`} />
 
-				<!-- Twitter -->
-				<meta name="twitter:card" content="summary_large_image" />
-				<meta name="twitter:image" content={social_card_url} />
-			</>
-		)}
-	</head>
-	<body class="min-h-screen flex flex-col bg-gray-50">
-		<Header />
-		<div class="flex-1 mb-12">
-			<slot />
-		</div>
-		<footer class="bg-primary/10 py-16 mt-auto">
-			<div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 px-4">
-				<div>
-					<h3 class="text-primary text-lg font-semibold mb-4">Learn more</h3>
-					<ul class="space-y-2">
-						<li>
-							<a href="/concepts/getting-started" class="text-text-dark hover:text-primary-dark transition-colors text-sm">
-								Concepts
-							</a>
-						</li>
-						<li>
-							<a href="/articles" class="text-text-dark hover:text-primary-dark transition-colors text-sm">
-								Articles
-							</a>
-						</li>
-						<li>
-							<a href="/research" class="text-text-dark hover:text-primary-dark transition-colors text-sm">
-								Research
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div>
-					<h3 class="text-primary text-lg font-semibold mb-4">Get Involved</h3>
-					<ul class="space-y-2">
-						<li>
-							<a href="https://github.com/orgs/agentexperience/discussions" class="text-text-dark hover:text-primary-dark transition-colors text-sm">
-								Help shape AX practices
-							</a>
-						</li>
-						<li>
-							<a href="https://github.com/agentexperience/ax" class="text-text-dark hover:text-primary-dark transition-colors text-sm">
-								Improve agentexperience.ax
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div>
-					<p class="text-text-dark text-sm text-right"> Made possible by AX OSS contributors. <br /> Powered by Netlify.</p>
-				</div>
-			</div>
-		</footer>
-	</body>
+                <!-- Twitter -->
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:image" content={social_card_url} />
+            </>
+        )}
+    </head>
+    <body class="min-h-screen flex flex-col antialiased">
+        <Header />
+        <div class="flex-1 mb-12">
+            <slot />
+        </div>
+        <footer class={`py-16 mt-auto mx-auto px-4 sm:px-8 md:px-12 w-full ${footerCN}`}>
+            <div class="grid w-full grid-cols-1 md:grid-cols-3 gap-12">
+                <div>
+                    <h3 class="text-text-muted mb-2 font-mono uppercase text-sm tracking-wider">Learn more</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="/concepts/getting-started" class="text-text-dark hover:text-accent transition-colors">
+                                Concepts
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/articles" class="text-text-dark hover:text-accent transition-colors">
+                                Articles
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/research" class="text-text-dark hover:text-accent transition-colors">
+                                Research
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg text-text-muted mb-2 font-mono uppercase text-sm tracking-wider">Get Involved</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="https://github.com/orgs/agentexperience/discussions" class="text-text-dark hover:text-accent transition-colight">
+                                Help shape AX practices
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/agentexperience/ax" class="text-text-dark hover:text-accent transition-colight">
+                                Improve agentexperience.ax
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-text-muted text-sm text-right"> Made possible by AX OSS contributors. <br /> Powered by <a href="https://netlify.com" class="font-semibold">Netlify</a>.</p>
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>

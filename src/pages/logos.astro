@@ -45,14 +45,14 @@ import Layout from '../layouts/Layout.astro';
 	}
 	.home-link {
 		padding: 0.5rem 1rem;
-		background: rgb(var(--primary));
+		background: rgb(var(--accent));
 		border-radius: 4px;
 		text-decoration: none;
-		color: rgb(var(--text-light));
+		color: rgb(var(--text-text-muted));
 		transition: background-color 0.2s;
 	}
 	.home-link:hover {
-		background: rgb(var(--primary-light));
+		background: rgb(var(--accent));
 	}
 	.resources-grid {
 		display: grid;
@@ -63,11 +63,11 @@ import Layout from '../layouts/Layout.astro';
 		background: white;
 		border-radius: 8px;
 		padding: 2rem;
-		border: 1px solid rgba(var(--primary), 0.2);
+		border: 1px solid rgba(var(--accent), 0.2);
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	}
 	.resource-card h2 {
-		color: rgb(var(--primary));
+		color: rgb(var(--accent));
 		margin-bottom: 1.5rem;
 		font-size: 1.5rem;
 	}
@@ -86,15 +86,15 @@ import Layout from '../layouts/Layout.astro';
 		text-decoration: none;
 		color: rgb(var(--text-dark));
 		transition: transform 0.2s, box-shadow 0.2s;
-		border: 1px solid rgba(var(--primary), 0.1);
+		border: 1px solid rgba(var(--accent), 0.1);
 	}
 	.download-link:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 2px 4px rgba(var(--primary), 0.2);
-		border-color: rgb(var(--secondary));
+		box-shadow: 0 2px 4px rgba(var(--accent), 0.2);
+		border-color: rgb(var(--accent));
 	}
 	.file-info {
-		color: rgb(var(--primary));
+		color: rgb(var(--accent));
 		font-size: 0.9rem;
 	}
 </style>

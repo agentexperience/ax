@@ -3,6 +3,7 @@ title: "Navigating the Future: AX, the Agent Web, and Its Interface"
 description: "In order for website and agents to coexist within a mutually beneficial web, we have to provide a different view of the web with optimal AX and UX without the negative impacts on websites today."
 pubDate: 2025-02-05
 author: "Sean Roberts"
+authorTitle: "Head of AX Architecture, Netlify"
 category: "research"
 category_order: 1
 sidebar_label: "Agent Web and Its Interface"
@@ -102,6 +103,8 @@ For example, you could imagine that an agent helping to book a hotel could ask a
 ### Delegated interactivity models
 
 The web has long been challenged by the on-demand nature of serving content and updates to sites - meaning you have to actually visit the site and continue doing so to get the latest information. Websockets and server-sent events helped with this but the long standing connectivity is a burden on both client and server. One of the more viable approaches to mitigating this challenge on the web came up in the world of progressive web apps (PWA). This architecture pattern leverages a file called a service worker that registers events and can be ran in isolation of the website itself allowing any client to run the JavaScript to perform the actions including prefeching, background syncing data, verifying latest information, etc. Taking a page from this architecture pattern, we can imagine how we can solve the problems of offline syncing of context, event driven actions that allow the web app to provide additional context, tool definitions, etc., and a more direct hook into dynamic user flows that they can ensure are compatible with their APIs.
+
+---
 
 # New problems to solve
 

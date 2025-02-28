@@ -14,24 +14,24 @@ const {
   title,
   icon,
   className,
-  iconClassName,
+  iconClassName = "text-accent",
 } = Astro.props;
 ---
 
 <a
   href={href}
-  class={`bg-white hover:bg-white border border-primary p-7 pt-6 text-lg md:text-xl group rounded-md no-underline text-text-dark shadow-sm hover:shadow-md transition-all ${className}`}
+  class={`bg-white hover:bg-white border border-accent/20 p-7 pt-6 group rounded-sm no-underline text-text-dark shadow-sm shadow-accent/10 hover:-translate-y-px hover:shadow-md hover:shadow-accent/10 transition-all ${className}`}
 >
-  {icon && <Icon name={icon} class={`size-6 mb-4 ${iconClassName}`} />}
-  <h2 class="font-semibold my-0 inline-flex gap-0.5 items-center font-grotesk">
+  {icon && <Icon name={icon} class={`size-5 mb-4 ${iconClassName}`} />}
+  <h2 class="font-semibold my-0 inline-flex gap-0.5 items-center font-grotesk text-xl">
     {title}
     <Icon
       name="lucide:chevron-right"
       size="0.75em"
-      class="inline-flex opacity-25 relative top-[0.05em] group-hover:opacity-100 transition-all"
+      class="inline-flex opacity-30 relative top-[0.05em] group-hover:opacity-100 transition-all"
     />
   </h2>
-  <div class="mt-1 text-md md:text-lg text-text !leading-snug">
+  <div class="mt-1 text-base text-text-muted group-hover:text-text-dark transition-all !leading-snug">
     <slot />
   </div>
 </a>

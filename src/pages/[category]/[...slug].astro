@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import SocialShare from "../../components/SocialShare.astro";
+import LogoMark from "../../components/LogoMark.astro";
 
 export async function getStaticPaths() {
   const collections = await Promise.all([
@@ -42,11 +43,15 @@ categoryPosts.sort((a, b) => {
   social_card_url={post.data.social_card_url}
   description={post.data.description}
 >
-  <main class="mx-auto mt-2 p-4 max-w-6xl">
+  <main
+    class="mx-auto my-12 md:my-16 xl:my-24 max-w-3xl lg:max-w-7xl px-4 sm:px-8 md:px-12"
+  >
     <div class="flex gap-8">
-      <div class="hidden md:block w-48 shrink-0">
-        <div class="sticky top-4">
-          <h2 class="text-xl font-bold text-gray-600 mb-6 mt-4 -ml-4 p-4 py-2">
+      <div class="hidden lg:block w-40 shrink-0">
+        <div class="sticky top-4 text-text-muted pt-16">
+          <h2
+            class="mb-3 -ml-4 p-4 py-2 font-mono uppercase text-sm tracking-wider"
+          >
             {
               post.data.category.charAt(0).toUpperCase() +
                 post.data.category.slice(1)
@@ -59,10 +64,10 @@ categoryPosts.sort((a, b) => {
                   <a
                     href={`/${post.data.category}/${categoryPost.slug}`}
                     class:list={[
-                      "block text-base text-text-dark leading-snug",
+                      "block text-base leading-snug text-pretty",
                       post.slug === categoryPost.slug
-                        ? "font-bold underline-primary"
-                        : "hover:text-primary transition-colors",
+                        ? "font-semibold underline-accent text-text-dark"
+                        : "hover:text-accent transition-colors",
                     ]}
                   >
                     {categoryPost.data.sidebar_label || categoryPost.data.title}
@@ -74,9 +79,9 @@ categoryPosts.sort((a, b) => {
         </div>
       </div>
       <div class="flex-1 min-w-0">
-        <div class="md:hidden mb-8">
+        <div class="lg:hidden mb-16">
           <select
-            class="w-full p-2 mx-2 border border-primary/20 rounded-lg bg-white text-text-dark"
+            class="w-full px-3 py-2 rounded-md bg-white border border-accent/15 appearance-none focus:ring-accent focus:border-accent"
             onchange="window.location.href=this.value"
           >
             {
@@ -91,36 +96,51 @@ categoryPosts.sort((a, b) => {
             }
           </select>
         </div>
-        <h1 class="text-4xl font-bold text-text-dark mb-8 mt-4 px-4 md:px-0 max-w-2xl tracking-tight">
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 mt-4 max-w-2xl tracking-tight text-balance !leading-[1.2]"
+        >
           {post.data.title}
         </h1>
-        <article
-          class="bg-white p-4 md:p-8 rounded-lg shadow-sm overflow-hidden"
-        >
+        <article>
           {
             (post.data.category === "articles" ||
               post.data.category === "research") && (
-              <div class="flex flex-col text-gray-600 justify-between mb-8 pb-4 border-b border-primary/20">
-                <div class="font-medium">
-                  By <span class="mr-2">{post.data.author}</span> Published{" "}
-                  {post.data.pubDate.toISOString().split("T")[0]}
-                </div>
+              <div class="mb-8 pb-4 md:text-lg">
+                <span class="font-semibold">{post.data.author}</span>
+                {post.data.authorTitle && (
+                  <span class="ml-2">{post.data.authorTitle}</span>
+                )}{" "}
+                <LogoMark
+                  size="8"
+                  className="inline-block mx-1 relative -top-[1px] text-text-muted"
+                />{" "}
+                {""}
+                <span class="text-text-muted">
+                  {new Date(post.data.pubDate).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </span>
               </div>
             )
           }
           <div
-            class="prose prose-lg max-w-none overflow-x-hidden
-            prose-headings:text-text-dark prose-headings:font-semibold
-            prose-p:text-gray-700 prose-p:leading-relaxed
-            prose-a:text-secondary prose-a:underline hover:prose-a:text-secondary-light
+            class="prose md:prose-lg
+            prose-headings:text-text-dark prose-headings:font-semibold prose-headings:text-balance
+            prose-p:text-text-dark
+            prose-a:text-accent-dark prose-a:font-medium prose-a:underline prose-a:underline-offset-[3px] prose-a:decoration-accent hover:prose-a:text-accent
             prose-strong:text-text-dark prose-strong:font-semibold
             prose-ul:list-disc prose-ul:pl-6
             prose-ol:list-decimal prose-ol:pl-6
-            prose-li:text-gray-700 prose-li:my-1
-            prose-blockquote:border-l-4 prose-blockquote:border-primary/30 prose-blockquote:pl-4 prose-blockquote:italic
-            prose-code:text-primary prose-code:bg-primary/10 prose-code:px-1 prose-code:rounded prose-code:before:hidden prose-code:after:hidden
-            prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-4 prose-pre:rounded-lg
-            prose-img:max-w-full prose-img:h-auto prose-img:object-contain"
+            prose-li:text-text-dark prose-li:my-1
+            prose-hr:border-text-muted/10
+            prose-blockquote:border-l-4 prose-blockquote:border-accent/30 prose-blockquote:pl-4 prose-blockquote:italic
+            prose-code:text-text-dark prose-code:bg-accent/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded-sm prose-code:before:hidden prose-code:after:hidden prose-code:font-medium
+            prose-pre:bg-white prose-pre:text-text-dark prose-pre:p-4 prose-pre:rounded-lg
+            prose-img:max-w-full prose-img:h-auto prose-img:object-contain
+            prose-figcaption:w-full prose-figcaption:text-text-muted prose-figcaption:text-center
+            prose-figcaption:font-mono prose-figcaption:text-sm"
           >
             <Content />
           </div>
@@ -133,3 +153,25 @@ categoryPosts.sort((a, b) => {
     </div>
   </main>
 </Layout>
+
+<style is:global>
+  .prose
+    :where(.prose > :first-child):is(p):not(
+      :where([class~="not-prose"], [class~="not-prose"] *)
+    ) {
+    @apply font-medium text-xl md:text-[22px] leading-relaxed mb-10;
+  }
+
+  .prose figure {
+    @apply flex flex-col items-center xl:-mx-36;
+  }
+
+  select:not([size]) {
+    print-color-adjust: exact;
+    background-image: url("data:image/svg+xml,%3csvg aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 10 6'%3e %3cpath stroke='%232036A1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 1 4 4 4-4'/%3e %3c/svg%3e");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 0.75em 0.75em;
+    padding-right: 2.5rem;
+  }
+</style>

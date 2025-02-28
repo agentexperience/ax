@@ -1,6 +1,8 @@
 ---
+import Logo from "./LogoMark.astro";
+
 const currentPath = Astro.url.pathname;
-const isHomePage = currentPath === '/';
+const isHomePage = currentPath === "/";
 
 // Don't show the header on the home page
 if (isHomePage) {
@@ -8,47 +10,66 @@ if (isHomePage) {
 }
 
 const navItems = [
-  { href: '/concepts/getting-started', label: 'Concepts' },
-  { href: '/articles', label: 'Articles' },
-  { href: '/research', label: 'Research' },
-  { href: 'https://github.com/orgs/agentexperience/discussions', label: 'Get involved!', external: true },
+  { href: "/concepts/getting-started", label: "Concepts" },
+  { href: "/articles", label: "Articles" },
+  { href: "/research", label: "Research" },
+  {
+    href: "https://github.com/orgs/agentexperience/discussions",
+    label: "Get involved!",
+    external: true,
+  },
 ];
 ---
 
-<header class="bg-white border-b border-primary/10 h-16 font-grotesk">
-  <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
-    <a href="/" class="relative inline-flex items-center text-xl font-semibold text-primary hover:text-primary-dark transition-colors group overflow-visible">
+<header class="h-16 font-grotesk">
+  <div
+    class="mx-auto px-4 sm:px-8 md:px-12 h-full flex items-center justify-between max-w-7xl"
+  >
+    <a
+      href="/"
+      class="relative inline-flex items-center text-lg font-semibold hover:text-accent transition-colors group overflow-visible"
+    >
       <span class="hidden sm:inline">Agent Experience</span>
       <span class="sm:hidden">AX</span>
-      <svg
-        class="ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0 translate-x-[-10px] logo-shake"
-        width="20" height="20" viewBox="0 0 193 194" fill="none" xmlns="http://www.w3.org/2000/svg"
-      >
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M193.087 109.796C149.183 114.977 114.357 149.804 109.177 193.708L83.2047 193.708C78.0619 150.122 43.7014 115.482 0.247322 109.913L0.24732 84.6623C43.7013 79.0933 78.0617 44.4539 83.2046 0.868113L109.177 0.86811C114.358 44.7719 149.183 79.5983 193.087 84.7795L193.087 109.796Z" fill="currentColor"/>
-      </svg>
+      <Logo
+        className="ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0 translate-x-[-10px] logo-shake"
+        size={12}
+      />
     </a>
-    <nav class="flex items-center gap-2">
-      {navItems.map(item => (
-        <a
-          href={item.href}
-          target={item.external ? "_blank" : ""}
-          class:list={[
-            'text-text-dark hover:text-primary-dark transition-colors px-1 py-2 min-w-[80px] md:min-w-[100px] text-center text-sm md:text-base whitespace-nowrap',
-            { 'text-primary font-medium': currentPath.startsWith(item.href) }
-          ]}
-        >
-          {item.label}
-        </a>
-      ))}
+    <nav class="flex items-start md:gap-1 mt-4">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            target={item.external ? "_blank" : ""}
+            class:list={[
+              "text-text-dark hover:text-accent transition-colors px-1 py-2 min-w-[80px] md:min-w-[100px] text-center text-sm md:text-base whitespace-nowrap flex flex-col items-center gap-2",
+              { "font-medium relative": currentPath.startsWith(item.href) },
+            ]}
+          >
+            {item.label}{" "}
+            {currentPath.startsWith(item.href) && (
+              <Logo className="" size={8} />
+            )}
+          </a>
+        ))
+      }
     </nav>
   </div>
 </header>
 
 <style>
   @keyframes logo-shake {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-1deg); }
-    75% { transform: rotate(1deg); }
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-1deg);
+    }
+    75% {
+      transform: rotate(1deg);
+    }
   }
 
   .logo-shake {
