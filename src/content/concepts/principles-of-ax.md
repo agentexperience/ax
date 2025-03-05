@@ -68,9 +68,6 @@ When providing a means to authenticate, ensure that the session information for 
 
 While digital services can’t control the information available in requests that agents send to their service, they can influence it. Within the context instructions provided for how to interact with the digital service, instructions can be included to send metadata such as a custom header that says the request originated from an agent.
 
-
-
----
 ---
 
 ## AX principles for agents
