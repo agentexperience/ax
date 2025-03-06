@@ -54,7 +54,7 @@ Where the majority of standardized interactivity patterns will surface is for fl
 
 This area is still *very* new but sites will leverage a combination of new protocols, existing protocols/patterns (e.g. OAuth and RBAC), and standardized context that can be provided to agents. **Interactivity patterns are where digital services will have hooks into maintaining continuity with end customers despite only working with their delegated agents.**
 
-### Differentiate Agent Interaction
+### ![](/articles/principles/differentiate-agent-interaction.svg) Differentiate Agent Interaction
 
 While agents should be allowed to operate on behalf of the user that delegated the work to them, their interactions should be tracked as a different medium than one operated directly by a human. At the technical layer this means metrics, logs, traces, etc. should capture that these were performed by agents. On the business layer, audit logs, service analytics, etc. should incorporate the agent identifying information.
 
@@ -68,9 +68,6 @@ When providing a means to authenticate, ensure that the session information for 
 
 While digital services can’t control the information available in requests that agents send to their service, they can influence it. Within the context instructions provided for how to interact with the digital service, instructions can be included to send metadata such as a custom header that says the request originated from an agent.
 
-
-
----
 ---
 
 ## AX principles for agents
