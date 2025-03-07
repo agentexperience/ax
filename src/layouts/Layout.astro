@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import EmailSignup from '../components/EmailSignup.astro';
 import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/inter';
 
@@ -86,9 +87,27 @@ const { title, description, social_card_url, footerCN = "max-w-7xl" } = Astro.pr
                     </ul>
                 </div>
                 <div>
-                    <p class="text-text-muted text-sm text-right"> Made possible by AX OSS contributors. <br /> Powered by <a href="https://netlify.com" class="font-semibold">Netlify</a>.</p>
+                    <h3 class="text-lg text-text-muted mb-2 font-mono uppercase text-sm tracking-wider">Stay Updated</h3>
+                    <EmailSignup />
+                    <p class="text-text-muted text-sm text-right mt-10"> Made possible by AX OSS contributors. <br /> Powered by <a href="https://netlify.com" class="font-semibold">Netlify</a>.</p>
                 </div>
             </div>
         </footer>
+
+        <script>
+            (()=>{
+                const links = document.querySelectorAll('.link-to-email-signup');
+                links.forEach((link)=>{
+                    link.addEventListener('click', (e)=>{
+                        e.preventDefault();
+                        const form = document.getElementById('email-signup-form');
+                        form.scrollIntoView({ behavior: 'smooth' });
+                        setTimeout(()=>{
+                            form.querySelector('input').focus();
+                        }, 500);
+                    })
+                })
+            })();
+        </script>
     </body>
 </html>
