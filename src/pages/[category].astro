@@ -33,69 +33,133 @@ posts.sort((a, b) => {
   // If category_order is the same, sort by date (newest first)
   return b.data.pubDate.getTime() - a.data.pubDate.getTime();
 });
+
+// Define categories for the sidebar
+const categories = [
+  { slug: "all", name: "All Content" },
+  { slug: "articles", name: "Articles" },
+  // { slug: "concepts", name: "Concepts" },
+  { slug: "research", name: "Research" },
+  { slug: "guides", name: "Guides" },
+];
 ---
 
 <Layout
   title={`${category.charAt(0).toUpperCase() + category.slice(1)} | Agent Experience`}
   description={`Agent Experience posts related to ${category.charAt(0).toUpperCase() + category.slice(1)}.`}
 >
-  <main class="mx-auto mt-2 p-4 max-w-7xl px-4 sm:px-8 md:px-12">
-    <h1 class="text-4xl font-bold text-text-dark mb-8">
-      {category.charAt(0).toUpperCase() + category.slice(1)}
-    </h1>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-      {
-        posts.map((post) => (
-          <a
-            href={post.data.external_link || `/${category}/${post.slug}`}
-            target={post.data.external_link ? "_blank" : undefined}
-            rel={post.data.external_link ? "noopener noreferrer" : undefined}
-            class="relative flex flex-col p-6 lg:p-8 bg-white/35 hover:bg-white rounded-sm border border-accent/10 hover:-translate-y-px shadow-sm shadow-accent/10 hover:shadow-md hover:shadow-accent/10 transition-all h-full group"
+  <main class="mx-auto my-12 md:my-16 xl:my-24 max-w-3xl lg:max-w-7xl px-4 sm:px-8 md:px-12">
+    <div class="flex gap-8">
+      <!-- Left Sidebar (desktop) -->
+      <div class="hidden lg:block w-48 shrink-0">
+        <div class="sticky top-4 text-text-muted pt-16">
+          <h2
+            class="mb-3 -ml-4 p-4 py-2 font-mono uppercase text-sm tracking-wider"
           >
-            <div class="flex-1">
-              <div class="flex items-start gap-3 mb-2">
-                {post.data.category_icon && (
-                  <img
-                    src={post.data.category_icon}
-                    alt=""
-                    class="size-10 object-contain order-last ml-auto rounded-sm"
+            Categories
+          </h2>
+          <ul class="space-y-3">
+            {
+              categories.map((cat) => (
+                <li>
+                  <a
+                    href={`/${cat.slug}`}
+                    class:list={[
+                      "block text-base leading-snug text-pretty",
+                      category === cat.slug
+                        ? "font-semibold text-text-dark"
+                        : "hover:text-accent transition-colors",
+                    ]}
+                  >
+                    {cat.name}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="flex-1 min-w-0">
+        <!-- Mobile dropdown -->
+        <div class="lg:hidden mb-16">
+          <select
+            class="w-full px-3 py-2 rounded-md bg-white border border-accent/15 appearance-none focus:ring-accent focus:border-accent"
+            onchange="window.location.href=this.value"
+          >
+            {
+              categories.map((cat) => (
+                <option value={`/${cat.slug}`} selected={category === cat.slug}>
+                  {cat.name}
+                </option>
+              ))
+            }
+          </select>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 mt-4 tracking-tight text-balance !leading-[1.2]">
+          {category.charAt(0).toUpperCase() + category.slice(1)}
+        </h1>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+          {
+            posts.map((post) => (
+              <a
+                href={post.data.external_link || `/${category}/${post.slug}`}
+                target={post.data.external_link ? "_blank" : undefined}
+                rel={
+                  post.data.external_link ? "noopener noreferrer" : undefined
+                }
+                class="relative flex flex-col p-6 lg:p-8 bg-white/35 hover:bg-white rounded-sm border border-accent/10 hover:-translate-y-px shadow-sm shadow-accent/10 hover:shadow-md hover:shadow-accent/10 transition-all h-full group"
+              >
+                <div class="flex-1">
+                  <div class="flex items-start gap-3 mb-2">
+                    {post.data.category_icon && (
+                      <img
+                        src={post.data.category_icon}
+                        alt=""
+                        class="size-10 object-contain order-last ml-auto rounded-sm"
+                      />
+                    )}
+                    <h2 class="text-xl font-semibold font-grotesk text-text-dark text-balance">
+                      {post.data.title}
+                    </h2>
+                  </div>
+                  <p class="my-4 mr-16 text-text-muted leading-relaxed group-hover:text-text-dark">
+                    {post.data.description}
+                  </p>
+                </div>
+                {(post.data.category === "articles" ||
+                  post.data.category === "research") && (
+                  <div class="flex justify-between text-sm text-gray-500">
+                    <div class="text-text-muted">
+                      By {post.data.author}
+                      <LogoMark
+                        size="6"
+                        className="inline-block mx-1 relative -top-[1px] text-text-muted/25"
+                      />{" "}
+                      {new Date(post.data.pubDate).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </div>
+                  </div>
+                )}
+                {post.data.external_link && (
+                  <Icon
+                    name="lucide:external-link"
+                    size="1em"
+                    class="absolute opacity-0 bottom-7 right-6 lg:bottom-9 lg:right-8 text-muted/25 group-hover:opacity-25 transition-all"
                   />
                 )}
-                <h2 class="text-xl font-semibold font-grotesk text-text-dark text-balance">
-                  {post.data.title}
-                </h2>
-              </div>
-              <p class="my-4 mr-16 text-text-muted leading-relaxed group-hover:text-text-dark">
-                {post.data.description}
-              </p>
-            </div>
-            {(post.data.category === "articles" ||
-              post.data.category === "research") && (
-              <div class="flex justify-between text-sm text-gray-500">
-                <div class="text-text-muted">
-                  By {post.data.author}
-                  <LogoMark
-                    size="6"
-                    className="inline-block mx-1 relative -top-[1px] text-text-muted/25"
-                  />{" "}
-                  {new Date(post.data.pubDate).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </div>
-              </div>
-            )}
-            {post.data.external_link && (
-              <Icon
-                name="lucide:external-link"
-                size="1em"
-                class="absolute opacity-0 bottom-7 right-6 lg:bottom-9 lg:right-8 text-muted/25 group-hover:opacity-25 transition-all"
-              />
-            )}
-          </a>
-        ))
-      }
+              </a>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </main>
 </Layout>
+
