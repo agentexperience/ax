@@ -145,7 +145,7 @@ categoryPosts.sort((a, b) => {
             prose-hr:border-text-muted/10
             prose-blockquote:border-l-4 prose-blockquote:border-accent/30 prose-blockquote:pl-4 prose-blockquote:italic
             prose-code:text-text-dark prose-code:bg-accent/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded-sm prose-code:before:hidden prose-code:after:hidden prose-code:font-medium
-            prose-pre:bg-white prose-pre:text-text-dark prose-pre:p-4 prose-pre:rounded-lg
+            prose-pre:bg-[#1e1e2e] prose-pre:text-[#cdd6f4] prose-pre:p-4 prose-pre:rounded-lg prose-pre:border prose-pre:border-accent/10
             prose-img:max-w-full prose-img:h-auto prose-img:object-contain
             prose-figcaption:w-full prose-figcaption:text-text-muted prose-figcaption:text-center
             prose-figcaption:font-mono prose-figcaption:text-sm"
@@ -177,6 +177,10 @@ categoryPosts.sort((a, b) => {
   .prose h3 img {
     margin-top: 5rem;
     margin-bottom: 0.5rem;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0 text-inherit font-normal rounded-none;
   }
 
   select:not([size]) {

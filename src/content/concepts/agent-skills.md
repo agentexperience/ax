@@ -104,6 +104,27 @@ Skills encode procedural knowledge and workflows, but they do not address every 
 - **They do not replace good API design.** A skill that guides an agent through a poorly designed API does not fix the underlying API. Skills provide the workflow layer, not the service design.
 - **They do not cover all context delivery.** Some context is better served through always-on context files, hosted documentation, or structured data delivered via MCP resources.
 
+## Improve your AX with Skills
+
+Agent Skills are one of the most direct ways to improve the agent experience of a codebase or digital service. By creating and sharing skills, you give agents the procedural knowledge they need to work effectively with your project, reducing errors, saving time, and making your codebase more accessible to the growing number of developers who work through AI agents.
+
+### Add skills to your project
+
+Start by identifying the workflows in your project that agents struggle with or that require specific domain knowledge. Common candidates include:
+
+- **Deployment procedures.** If deploying your project involves specific steps, environment checks, or post-deploy verification, encode those steps in a skill.
+- **Code generation patterns.** If your project follows specific patterns for creating new components, API endpoints, or database migrations, a skill can guide agents through the correct approach every time.
+- **Testing workflows.** If your test suite requires specific setup, fixtures, or sequencing, a skill ensures agents run tests correctly without trial and error.
+- **Review and quality checks.** Skills can encode your team's code review standards, accessibility requirements, or performance benchmarks so agents apply them consistently.
+
+Place skill directories in `.claude/skills/` (or the equivalent for your agent platform) and commit them to your repository. Every developer using an AI agent on your project will benefit immediately.
+
+### Share skills with the community
+
+If you have built a skill that solves a common problem, consider sharing it. The skills ecosystem grows when teams contribute their expertise back to the community. Skills for common frameworks, deployment platforms, testing patterns, and development workflows are in high demand.
+
+You can publish skills through registries like [skills.sh](https://skills.sh/) or share them directly through GitHub repositories. Well-documented skills with clear descriptions and practical instructions get adopted quickly.
+
 ## Getting involved
 
 Agent Skills are backed by an open specification with an active ecosystem. Here are the key resources:
