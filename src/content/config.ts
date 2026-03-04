@@ -61,6 +61,7 @@ const concepts = defineCollection({
     category_order: z.number().optional().default(0),
     category_icon: z.string().optional(),
     social_card_url: z.string().optional(),
+    sidebar_indent: z.boolean().optional().default(false),
   }),
 });
 

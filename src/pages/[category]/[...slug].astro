@@ -60,7 +60,7 @@ categoryPosts.sort((a, b) => {
           <ul class="space-y-3">
             {
               categoryPosts.map((categoryPost) => (
-                <li>
+                <li class:list={[categoryPost.data.sidebar_indent && "ml-4"]}>
                   <a
                     href={`/${post.data.category}/${categoryPost.slug}`}
                     class:list={[
@@ -90,7 +90,7 @@ categoryPosts.sort((a, b) => {
                   value={`/${post.data.category}/${categoryPost.slug}`}
                   selected={post.slug === categoryPost.slug}
                 >
-                  {categoryPost.data.sidebar_label || categoryPost.data.title}
+                  {categoryPost.data.sidebar_indent ? "— " : ""}{categoryPost.data.sidebar_label || categoryPost.data.title}
                 </option>
               ))
             }
