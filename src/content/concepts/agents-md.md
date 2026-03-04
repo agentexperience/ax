@@ -91,6 +91,48 @@ AGENTS.md provides static, project-level context for coding agents, but it does 
 - **It does not replace good project practices.** A well-written AGENTS.md cannot compensate for a poorly organized codebase, unclear API designs, or missing tests. The file guides agents within a project, but the project itself must be well-structured for agents to succeed.
 - **It does not solve multi-tool fragmentation entirely.** While AGENTS.md aims to be a cross-tool standard, some tools still require their own configuration files for tool-specific features. Teams using multiple AI coding tools may still need to maintain parallel configurations.
 
+## Improve your AX with AGENTS.md
+
+Adding an AGENTS.md file to your repository is one of the simplest and highest-impact steps you can take to improve the agent experience of your codebase. Every AI coding agent that opens your project will benefit from clear, upfront instructions, and the effort required to create one is minimal compared to the time saved across every agent interaction.
+
+### Start with the essentials
+
+Create an `AGENTS.md` file at the root of your repository and begin with the information agents need most:
+
+```markdown
+# Project Name
+
+## Build & Run
+- Install: `npm install`
+- Dev server: `npm run dev`
+- Build: `npm run build`
+- Test: `npm test`
+
+## Code Conventions
+- Use TypeScript strict mode
+- Follow the existing component patterns in src/components/
+- All new features require tests
+
+## Important Boundaries
+- Never modify files in vendor/ or dist/
+- Do not commit .env files or secrets
+```
+
+Even a short file like this dramatically reduces agent errors and wasted cycles. Agents no longer need to guess at build commands, infer conventions from code patterns, or accidentally modify protected areas.
+
+### Expand as you go
+
+The best AGENTS.md files evolve through real usage. When an agent makes a mistake that could have been prevented with better instructions, add that guidance to the file. Common additions include:
+
+- **Architecture notes.** Describe how the major parts of the system connect. Agents that understand the architecture make better decisions about where to place new code.
+- **Pull request requirements.** If your team requires certain checks, labels, or review processes, document them so agents can prepare compliant submissions.
+- **Framework-specific patterns.** If the project uses patterns that differ from framework defaults (custom hooks, middleware conventions, data fetching patterns), spell them out.
+- **Known quirks.** Every project has areas where the "obvious" approach is wrong. Document these to save agents from common pitfalls.
+
+### Use AGENTS.md in subdirectories
+
+For larger projects, especially monorepos, place additional AGENTS.md files in subdirectories that have their own conventions. A frontend package might have different testing requirements than a backend API, and agents working in those areas will pick up the nearest AGENTS.md automatically.
+
 ## Getting started
 
 Creating an AGENTS.md file is straightforward. Place a file named `AGENTS.md` (uppercase) at the root of the repository and add the sections most relevant to the project. Start with build commands, test instructions, and the most important conventions. Many coding agents can generate an initial AGENTS.md when asked.
