@@ -42,6 +42,13 @@ const categories = [
   { slug: "research", name: "Research" },
   { slug: "guides", name: "Guides" },
 ];
+
+const iconWidths = [40, 80, 120];
+// Route category icons through Netlify Image CDN for format/quality optimization.
+const toCdnImage = (url, width = 80) =>
+  `/.netlify/images?url=${encodeURIComponent(url)}&w=${width}&fm=avif&q=80`;
+const toIconSrcSet = (url) =>
+  iconWidths.map((width) => `${toCdnImage(url, width)} ${width}w`).join(", ");
 ---
 
 <Layout
@@ -104,7 +111,7 @@ const categories = [
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
           {
-            posts.map((post) => (
+            posts.map((post, index) => (
               <a
                 href={post.data.external_link || `/${category}/${post.slug}`}
                 target={post.data.external_link ? "_blank" : undefined}
@@ -117,9 +124,16 @@ const categories = [
                   <div class="flex items-start gap-3 mb-2">
                     {post.data.category_icon && (
                       <img
-                        src={post.data.category_icon}
+                        src={toCdnImage(post.data.category_icon, 80)}
+                        srcset={toIconSrcSet(post.data.category_icon)}
+                        sizes="40px"
                         alt=""
                         class="size-10 object-contain order-last ml-auto rounded-sm"
+                        width="40"
+                        height="40"
+                        loading={index === 0 ? "eager" : "lazy"}
+                        fetchpriority={index === 0 ? "high" : "auto"}
+                        decoding="async"
                       />
                     )}
                     <h2 class="text-xl font-semibold font-grotesk text-text-dark text-balance">
@@ -162,4 +176,3 @@ const categories = [
     </div>
   </main>
 </Layout>
-
