@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import EmailSignup from '../components/EmailSignup.astro';
+// Fonts are self-hosted via fontsource and already use font-display: swap.
 import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/inter';
 
@@ -12,6 +13,10 @@ interface Props {
 }
 
 const { title, description, social_card_url, footerCN = "max-w-7xl" } = Astro.props;
+// Reuse the social card as a high-value preloaded image when available.
+const optimizedSocialCard = social_card_url
+  ? `/.netlify/images?url=${encodeURIComponent(social_card_url)}&w=1200&fm=avif&q=80`
+  : null;
 ---
 
 <!doctype html>
@@ -34,6 +39,8 @@ const { title, description, social_card_url, footerCN = "max-w-7xl" } = Astro.pr
 
         {social_card_url && (
             <>
+                <!-- Preload the primary social/hero image for faster LCP on article pages. -->
+                <link rel="preload" as="image" href={optimizedSocialCard} />
                 <!-- Open Graph / Facebook -->
                 <meta property="og:image" content={`https://agentexperience.ax${social_card_url}`} />
 
@@ -43,6 +50,10 @@ const { title, description, social_card_url, footerCN = "max-w-7xl" } = Astro.pr
             </>
         )}
         <link rel="sitemap" href="/sitemap-index.xml" />
+        <style>
+            /* Inline critical shell styles so first paint is not blocked by the full CSS bundle. */
+            html, body { margin: 0; min-height: 100%; background: #f8f9ff; color: #111320; }
+        </style>
     </head>
     <body class="min-h-screen flex flex-col antialiased">
         <Header />
@@ -93,21 +104,7 @@ const { title, description, social_card_url, footerCN = "max-w-7xl" } = Astro.pr
                 </div>
             </div>
         </footer>
-
-        <script>
-            (()=>{
-                const links = document.querySelectorAll('.link-to-email-signup');
-                links.forEach((link)=>{
-                    link.addEventListener('click', (e)=>{
-                        e.preventDefault();
-                        const form = document.getElementById('email-signup-form');
-                        form.scrollIntoView({ behavior: 'smooth' });
-                        setTimeout(()=>{
-                            form.querySelector('input').focus();
-                        }, 500);
-                    })
-                })
-            })();
-        </script>
+        <!-- Defer non-critical interaction logic so HTML parsing is not blocked. -->
+        <script src="/scripts/site-interactions.js" defer></script>
     </body>
 </html>
